@@ -2,10 +2,11 @@
 
 use Doctrine\Common\Annotations\AnnotationReader;
 
-class Mapper
+final class Mapper
 {
     public static function map($path, $namespace)
     {
+        $reader = new AnnotationReader();
         $mapping = [];
 
         $directory = new RecursiveDirectoryIterator($path);
@@ -16,48 +17,36 @@ class Mapper
                 continue;
             }
 
-            $pair = self::checkFile($node->getPathname());
+            $file = substr($node->getPathname(), strlen($path));
+            $file = ltrim($file, DIRECTORY_SEPARATOR);
+            $file = rtrim($file, '.php');
+
+            $class = $namespace . '\\' . str_replace(DIRECTORY_SEPARATOR, '\\', $file);
+
+            if (!class_exists($class)) {
+                continue;
+            }
+
+            $annotation = $reader->getClassAnnotation(new ReflectionClass($class), Handler::class);
+
+            if (!($annotation instanceof Handler)) {
+                continue;
+            }
+
+            $mapping[$class] = $annotation->getHandler();
         }
 
         return $mapping;
     }
 
-    protected static function checkFile($file)
+    public static function mapInstanciated($path, $namespace)
     {
-        echo $file, PHP_EOL;
-        $class = self::getClassFromFile($file);
-        echo $class, PHP_EOL;
-        $reader = new AnnotationReader();
-        $annotation = $reader->getClassAnnotation(new ReflectionClass($class), Handler::class);
-        debug($annotation);die();
-    }
+        $mapping = [];
 
-    protected static function getClassFromFile($file)
-    {
-        $fp = fopen($file, 'r');
-        $class = $buffer = '';
-        $i = 0;
-        while (!$class) {
-            if (feof($fp)) break;
-
-            $buffer .= fread($fp, 512);
-            $tokens = token_get_all($buffer);
-
-            if (strpos($buffer, '{') === false) continue;
-
-            for (;$i<count($tokens);$i++) {
-                if ($tokens[$i][0] === T_CLASS) {
-                    for ($j=$i+1;$j<count($tokens);$j++) {
-                        if ($tokens[$j] === '{') {
-                            $class = $tokens[$i+2][1];
-                        }
-                    }
-                }
-            }
+        foreach (self::map($path, $namespace) as $command => $handler) {
+            $mapping[$command] = new $handler();
         }
 
-        fclose($fp);
-
-        return $class;
+        return $mapping;
     }
 }

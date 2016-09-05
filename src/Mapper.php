@@ -45,7 +45,7 @@ final class Mapper
         return $mapping;
     }
 
-    public static function mapInstanciated($path, $namespace)
+    public static function mapInstantiated($path, $namespace)
     {
         $mapping = [];
 

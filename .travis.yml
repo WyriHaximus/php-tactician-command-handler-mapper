@@ -46,7 +46,6 @@ matrix:
 install:
   - composer validate
   - composer config platform.php $TRAVIS_PHP_VERSION
-  - composer validate
   - if [ -z "$dependencies" ]; then composer install --prefer-dist -n; fi;
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --prefer-dist -n; fi;
   - if [ "$dependencies" = "highest" ]; then composer update --prefer-dist -n; fi;

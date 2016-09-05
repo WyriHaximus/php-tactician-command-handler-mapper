@@ -1,6 +1,12 @@
 <?php
 
+namespace WyriHaximus\Tactician\CommandHandler;
+
 use Doctrine\Common\Annotations\AnnotationReader;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use ReflectionClass;
+use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 
 final class Mapper
 {

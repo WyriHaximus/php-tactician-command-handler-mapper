@@ -1,5 +1,7 @@
 <?php
 
+namespace WyriHaximus\Tactician\CommandHandler\Annotations;
+
 /**
  * @Annotation
  * @Target({"CLASS"})

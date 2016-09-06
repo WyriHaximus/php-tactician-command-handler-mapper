@@ -27,7 +27,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "WyriHaximus\\Tests\\Tactician\\CommandHandler\\": "tests/"
+      "WyriHaximus\\Tests\\Tactician\\CommandHandler\\": "tests/",
+      "Test\\App\\": "test-app/"
     }
   },
   "config": {

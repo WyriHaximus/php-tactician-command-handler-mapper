@@ -10,7 +10,7 @@
 
 # Install
 
-To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `~`.
+To install via [Composer](http://getcomposer.org/), use the command below, it will automatically detect the latest version and bind it with `^`.
 
 ```
 composer require wyrihaximus/tactician-command-handler-mapper

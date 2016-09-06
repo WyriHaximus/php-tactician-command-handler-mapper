@@ -12,8 +12,8 @@ use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 final class Mapper
 {
     /**
-     * @param $path
-     * @param $namespace
+     * @param string $path
+     * @param string $namespace
      * @return array
      */
     public static function mapInstantiated($path, $namespace)
@@ -28,8 +28,8 @@ final class Mapper
     }
 
     /**
-     * @param $path
-     * @param $namespace
+     * @param string $path
+     * @param string $namespace
      * @return array
      */
     public static function map($path, $namespace)

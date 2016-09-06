@@ -15,9 +15,9 @@ final class Handler
 
     /**
      * Handler constructor.
-     * @param string $handler
+     * @param array $handler
      */
-    public function __construct($handler)
+    public function __construct(array $handler)
     {
         $this->handler = current($handler);
     }

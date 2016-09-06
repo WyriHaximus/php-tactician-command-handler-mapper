@@ -9,6 +9,20 @@ use WyriHaximus\Tactician\CommandHandler\Mapper;
 
 class MapperTest extends \PHPUnit_Framework_TestCase
 {
+    public function testMap()
+    {
+        $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR . 'Commands' . DIRECTORY_SEPARATOR;
+        $namespace = 'Test\App\Commands';
+        $map = Mapper::map($path, $namespace);
+
+        $this->assertSame(
+            [
+                'Test\App\Commands\AwesomesauceCommand' => 'Test\App\Handlers\AwesomesauceHandler',
+            ],
+            $map
+        );
+    }
+
     public function testGetHandlerByCommand()
     {
         $handler = new Handler([

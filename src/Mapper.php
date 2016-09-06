@@ -3,6 +3,7 @@
 namespace WyriHaximus\Tactician\CommandHandler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\Reader;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ReflectionClass;
@@ -10,6 +11,17 @@ use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 
 final class Mapper
 {
+    public static function mapInstantiated($path, $namespace)
+    {
+        $mapping = [];
+
+        foreach (self::map($path, $namespace) as $command => $handler) {
+            $mapping[$command] = new $handler();
+        }
+
+        return $mapping;
+    }
+
     public static function map($path, $namespace)
     {
         $reader = new AnnotationReader();
@@ -33,26 +45,26 @@ final class Mapper
                 continue;
             }
 
-            $annotation = $reader->getClassAnnotation(new ReflectionClass($class), Handler::class);
+            $handler = self::getHandlerByCommand($class, $reader);
 
-            if (!($annotation instanceof Handler)) {
+            if (!class_exists($handler)) {
                 continue;
             }
 
-            $mapping[$class] = $annotation->getHandler();
+            $mapping[$class] = $handler;
         }
 
         return $mapping;
     }
 
-    public static function mapInstantiated($path, $namespace)
+    public static function getHandlerByCommand($command, Reader $reader)
     {
-        $mapping = [];
+        $annotation = $reader->getClassAnnotation(new ReflectionClass($command), Handler::class);
 
-        foreach (self::map($path, $namespace) as $command => $handler) {
-            $mapping[$command] = new $handler();
+        if (!($annotation instanceof Handler)) {
+            return '';
         }
 
-        return $mapping;
+        return $annotation->getHandler();
     }
 }

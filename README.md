@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/wyrihaximus/tactician-command-handler-mapper/downloads.png)](https://packagist.org/packages/wyrihaximus/tactician-command-handler-mapper/stats)
 [![Code Coverage](https://scrutinizer-ci.com/g/wyrihaximus/php-tactician-command-handler-mapper/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/wyrihaximus/php-tactician-command-handler-mapper/?branch=master)
 [![License](https://poser.pugx.org/wyrihaximus/tactician-command-handler-mapper/license.png)](https://packagist.org/packages/wyrihaximus/tactician-command-handler-mapper)
-[![PHP 7 ready](http://php7ready.timesplinter.ch/wyrihaximus/php-tactician-command-handler-mapper/badge.svg)](https://appveyor-ci.org/wyrihaximus/php-tactician-command-handler-mapper)
+[![PHP 7 ready](http://php7ready.timesplinter.ch/wyrihaximus/php-tactician-command-handler-mapper/badge.svg)](https://travis-ci.org/wyrihaximus/php-tactician-command-handler-mapper)
 
 
 # Goals

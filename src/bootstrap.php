@@ -2,6 +2,6 @@
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
-AnnotationRegistry::registerLoader(function (string $class) {
+AnnotationRegistry::registerLoader(function ($class) {
     return class_exists($class);
 });

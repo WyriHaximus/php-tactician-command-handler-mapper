@@ -11,6 +11,11 @@ use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 
 final class Mapper
 {
+    /**
+     * @param $path
+     * @param $namespace
+     * @return array
+     */
     public static function mapInstantiated($path, $namespace)
     {
         $mapping = [];
@@ -22,6 +27,11 @@ final class Mapper
         return $mapping;
     }
 
+    /**
+     * @param $path
+     * @param $namespace
+     * @return array
+     */
     public static function map($path, $namespace)
     {
         $reader = new AnnotationReader();
@@ -57,6 +67,11 @@ final class Mapper
         return $mapping;
     }
 
+    /**
+     * @param string $command
+     * @param Reader $reader
+     * @return string
+     */
     public static function getHandlerByCommand($command, Reader $reader)
     {
         $annotation = $reader->getClassAnnotation(new ReflectionClass($command), Handler::class);

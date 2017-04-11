@@ -1,11 +1,11 @@
 # Command to Handler mapper for [`Tactician`](http://tactician.thephpleague.com/)
 
-[![Build Status](https://travis-ci.org/WyriHaximus/php-tactician-command-handler-mapper.svg?branch=master)](https://travis-ci.org/WyriHaximus/php-tactician-command-handler-mapper)
+[![Build Status](https://travis-ci.org/wyrihaximus/php-tactician-command-handler-mapper.svg?branch=master)](https://travis-ci.org/wyrihaximus/php-tactician-command-handler-mapper)
 [![Latest Stable Version](https://poser.pugx.org/wyrihaximus/tactician-command-handler-mapper/v/stable.png)](https://packagist.org/packages/wyrihaximus/tactician-command-handler-mapper)
 [![Total Downloads](https://poser.pugx.org/wyrihaximus/tactician-command-handler-mapper/downloads.png)](https://packagist.org/packages/wyrihaximus/tactician-command-handler-mapper/stats)
 [![Code Coverage](https://scrutinizer-ci.com/g/wyrihaximus/php-tactician-command-handler-mapper/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/wyrihaximus/php-tactician-command-handler-mapper/?branch=master)
 [![License](https://poser.pugx.org/wyrihaximus/tactician-command-handler-mapper/license.png)](https://packagist.org/packages/wyrihaximus/tactician-command-handler-mapper)
-[![PHP 7 ready](http://php7ready.timesplinter.ch/WyriHaximus/php-tactician-command-handler-mapper/badge.svg)](https://travis-ci.org/WyriHaximus/php-tactician-command-handler-mapper)
+[![PHP 7 ready](http://php7ready.timesplinter.ch/wyrihaximus/php-tactician-command-handler-mapper/badge.svg)](https://travis-ci.org/wyrihaximus/php-tactician-command-handler-mapper)
 
 
 # Install
@@ -87,7 +87,7 @@ $commandToHandlerMap = Mapper::map('src' . DS . 'CommandBus', 'App\CommandBus');
 
 The MIT License (MIT)
 
-Copyright (c) 2017 Cees-Jan Kiewiet
+Copyright (c) 2016 Cees-Jan Kiewiet
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

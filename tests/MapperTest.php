@@ -15,8 +15,7 @@ final class MapperTest extends TestCase
     public function testMapInstantiated()
     {
         $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR . 'Commands' . DIRECTORY_SEPARATOR;
-        $namespace = 'Test\App\Commands';
-        $map = iterator_to_array(Mapper::mapInstantiated($path, $namespace));
+        $map = iterator_to_array(Mapper::mapInstantiated($path));
 
         self::assertSame(1, count($map));
         self::assertTrue(isset($map[AwesomesauceCommand::class]));
@@ -26,8 +25,7 @@ final class MapperTest extends TestCase
     public function testMap()
     {
         $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR . 'Commands' . DIRECTORY_SEPARATOR;
-        $namespace = 'Test\App\Commands';
-        $map = iterator_to_array(Mapper::map($path, $namespace));
+        $map = iterator_to_array(Mapper::map($path));
 
         self::assertSame(
             [

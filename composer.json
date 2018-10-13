@@ -11,7 +11,8 @@
   "require": {
     "php": "^7.2",
     "doctrine/annotations": "^1.2",
-    "wyrihaximus/doctrine-annotation-autoloader": "^1.0"
+    "wyrihaximus/doctrine-annotation-autoloader": "^1.0",
+    "wyrihaximus/list-classes-in-directory": "dev-master"
   },
   "require-dev": {
     "api-clients/test-utilities": "^5.1"

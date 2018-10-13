@@ -50,12 +50,12 @@ final class Mapper
         }
     }
 
-    public static function getHandlerByCommand(string $command, ?Reader $reader = null): string
+    public static function getHandlerByCommand(string $command, ?Reader $reader = null): ?string
     {
         $annotation = ($reader ?? new AnnotationReader())->getClassAnnotation(new ReflectionClass($command), Handler::class);
 
         if (!($annotation instanceof Handler)) {
-            return '';
+            return null;
         }
 
         return $annotation->getHandler();

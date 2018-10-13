@@ -51,6 +51,6 @@ final class MapperTest extends TestCase
     public function testGetHandlerByCommandStdClass()
     {
         $result = Mapper::getHandlerByCommand('stdClass', new AnnotationReader());
-        self::assertSame('', $result);
+        self::assertSame(null, $result);
     }
 }

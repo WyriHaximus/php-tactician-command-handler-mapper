@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "849af362296f03360f9dd14fd36cd1df",
+    "content-hash": "8baede7d3a41d488106e76d9f05f5403",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -519,16 +519,16 @@
         },
         {
             "name": "wyrihaximus/list-classes-in-directory",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WyriHaximus/php-list-classes-in-directory.git",
-                "reference": "dbb7fdb0f3c0a573bba250f43a98e635d830f59c"
+                "reference": "dafe1795719f48698277c64dbbba51a565443178"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WyriHaximus/php-list-classes-in-directory/zipball/dbb7fdb0f3c0a573bba250f43a98e635d830f59c",
-                "reference": "dbb7fdb0f3c0a573bba250f43a98e635d830f59c",
+                "url": "https://api.github.com/repos/WyriHaximus/php-list-classes-in-directory/zipball/dafe1795719f48698277c64dbbba51a565443178",
+                "reference": "dafe1795719f48698277c64dbbba51a565443178",
                 "shasum": ""
             },
             "require": {
@@ -555,7 +555,7 @@
                 }
             ],
             "description": "List all classes in the given directory",
-            "time": "2018-10-13T17:47:57+00:00"
+            "time": "2018-10-13T20:57:28+00:00"
         }
     ],
     "packages-dev": [
@@ -3825,9 +3825,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "wyrihaximus/list-classes-in-directory": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

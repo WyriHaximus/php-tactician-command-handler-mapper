@@ -33,3 +33,6 @@ install:
 
 ## Run the actual test and benchmark
 script: make ci-extended
+
+## Gather coverage and set it to coverage servers
+after_script: make ci-coverage

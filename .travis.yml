@@ -8,19 +8,19 @@ cache:
 ## PHP versions we test against
 php:
   - 7.2
-  - nightly
+#  - nightly
 
 ## Build matrix for lowest and highest possible targets
 matrix:
   include:
     - php: 7.2
       env: dependencies=lowest
-    - php: nightly
-      env: dependencies=lowest
+#    - php: nightly
+#      env: dependencies=lowest
     - php: 7.2
       env: dependencies=highest
-    - php: nightly
-      env: dependencies=highest
+#    - php: nightly
+#      env: dependencies=highest
 
 ## Install or update dependencies
 install:

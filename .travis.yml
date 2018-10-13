@@ -32,7 +32,4 @@ install:
   - composer show
 
 ## Run the actual test and benchmark
-script: make travis
-
-## Gather coverage and set it to coverage servers
-after_script: make ci-extended
+script: make ci-extended

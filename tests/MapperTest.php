@@ -1,34 +1,37 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests\Tactician\CommandHandler;
 
+use ApiClients\Tools\TestUtilities\TestCase;
 use Doctrine\Common\Annotations\AnnotationReader;
-use Phake;
+use Prophecy\Argument;
+use Test\App\Commands\AwesomesauceCommand;
+use Test\App\Handlers\AwesomesauceHandler;
 use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 use WyriHaximus\Tactician\CommandHandler\Mapper;
 
-class MapperTest extends \PHPUnit_Framework_TestCase
+final class MapperTest extends TestCase
 {
     public function testMapInstantiated()
     {
         $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR . 'Commands' . DIRECTORY_SEPARATOR;
         $namespace = 'Test\App\Commands';
-        $map = Mapper::mapInstantiated($path, $namespace);
+        $map = iterator_to_array(Mapper::mapInstantiated($path, $namespace));
 
-        $this->assertSame(1, count($map));
-        $this->assertTrue(isset($map['Test\App\Commands\AwesomesauceCommand']));
-        $this->assertInstanceOf('Test\App\Handlers\AwesomesauceHandler', $map['Test\App\Commands\AwesomesauceCommand']);
+        self::assertSame(1, count($map));
+        self::assertTrue(isset($map[AwesomesauceCommand::class]));
+        self::assertInstanceOf(AwesomesauceHandler::class, $map[AwesomesauceCommand::class]);
     }
 
     public function testMap()
     {
         $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR . 'Commands' . DIRECTORY_SEPARATOR;
         $namespace = 'Test\App\Commands';
-        $map = Mapper::map($path, $namespace);
+        $map = iterator_to_array(Mapper::map($path, $namespace));
 
-        $this->assertSame(
+        self::assertSame(
             [
-                'Test\App\Commands\AwesomesauceCommand' => 'Test\App\Handlers\AwesomesauceHandler',
+                AwesomesauceCommand::class => AwesomesauceHandler::class,
             ],
             $map
         );
@@ -39,15 +42,15 @@ class MapperTest extends \PHPUnit_Framework_TestCase
         $handler = new Handler([
             'handdler',
         ]);
-        $reader = Phake::mock(AnnotationReader::class);
-        Phake::when($reader)->getClassAnnotation($this->isInstanceOf('ReflectionClass'), Handler::class)->thenReturn($handler);
-        $result = Mapper::getHandlerByCommand('stdClass', $reader);
-        $this->assertSame('handdler', $result);
+        $reader = $this->prophesize(AnnotationReader::class);
+        $reader->getClassAnnotation(Argument::type(\ReflectionClass::class), Handler::class)->willReturn($handler);
+        $result = Mapper::getHandlerByCommand('stdClass', $reader->reveal());
+        self::assertSame('handdler', $result);
     }
 
     public function testGetHandlerByCommandStdClass()
     {
         $result = Mapper::getHandlerByCommand('stdClass', new AnnotationReader());
-        $this->assertSame('', $result);
+        self::assertSame('', $result);
     }
 }

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tactician\CommandHandler;
 
@@ -11,31 +11,16 @@ use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 
 final class Mapper
 {
-    /**
-     * @param string $path
-     * @param string $namespace
-     * @return array
-     */
-    public static function mapInstantiated($path, $namespace)
+    public static function mapInstantiated(string $path, string $namespace): iterable
     {
-        $mapping = [];
-
         foreach (self::map($path, $namespace) as $command => $handler) {
-            $mapping[$command] = new $handler();
+            yield $command => new $handler();
         }
-
-        return $mapping;
     }
 
-    /**
-     * @param string $path
-     * @param string $namespace
-     * @return array
-     */
-    public static function map($path, $namespace)
+    public static function map(string $path, string $namespace, ?Reader $reader = null): iterable
     {
-        $reader = new AnnotationReader();
-        $mapping = [];
+        $reader = $reader ?? new AnnotationReader();
 
         $directory = new RecursiveDirectoryIterator($path);
         $directory = new RecursiveIteratorIterator($directory);
@@ -61,20 +46,13 @@ final class Mapper
                 continue;
             }
 
-            $mapping[$class] = $handler;
+            yield $class => $handler;
         }
-
-        return $mapping;
     }
 
-    /**
-     * @param string $command
-     * @param Reader $reader
-     * @return string
-     */
-    public static function getHandlerByCommand($command, Reader $reader)
+    public static function getHandlerByCommand(string $command, ?Reader $reader = null): string
     {
-        $annotation = $reader->getClassAnnotation(new ReflectionClass($command), Handler::class);
+        $annotation = ($reader ?? new AnnotationReader())->getClassAnnotation(new ReflectionClass($command), Handler::class);
 
         if (!($annotation instanceof Handler)) {
             return '';

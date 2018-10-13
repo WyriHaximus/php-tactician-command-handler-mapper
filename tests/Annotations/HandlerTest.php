@@ -1,16 +1,17 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace WyriHaximus\Tests\Tactician\CommandHandler\Annotations;
 
+use ApiClients\Tools\TestUtilities\TestCase;
 use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 
-class HandlerTest extends \PHPUnit_Framework_TestCase
+final class HandlerTest extends TestCase
 {
     public function testGetHandler()
     {
         $handler = new Handler([
             'handler',
         ]);
-        $this->assertSame('handler', $handler->getHandler());
+        self::assertSame('handler', $handler->getHandler());
     }
 }

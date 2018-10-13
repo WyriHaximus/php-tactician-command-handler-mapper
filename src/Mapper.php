@@ -4,45 +4,25 @@ namespace WyriHaximus\Tactician\CommandHandler;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
 use ReflectionClass;
 use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
+use function WyriHaximus\listClassesInDirectory;
 
 final class Mapper
 {
-    public static function mapInstantiated(string $path, string $namespace): iterable
+    public static function mapInstantiated(string $path, ?Reader $reader = null): iterable
     {
-        foreach (self::map($path, $namespace) as $command => $handler) {
+        foreach (self::map($path, $reader) as $command => $handler) {
             yield $command => new $handler();
         }
     }
 
-    public static function map(string $path, string $namespace, ?Reader $reader = null): iterable
+    public static function map(string $path, ?Reader $reader = null): iterable
     {
-        $reader = $reader ?? new AnnotationReader();
-
-        $directory = new RecursiveDirectoryIterator($path);
-        $directory = new RecursiveIteratorIterator($directory);
-
-        foreach ($directory as $node) {
-            if (!is_file($node->getPathname())) {
-                continue;
-            }
-
-            $file = substr($node->getPathname(), strlen($path));
-            $file = ltrim($file, DIRECTORY_SEPARATOR);
-            $file = rtrim($file, '.php');
-
-            $class = $namespace . '\\' . str_replace(DIRECTORY_SEPARATOR, '\\', $file);
-
-            if (!class_exists($class)) {
-                continue;
-            }
-
+        foreach (listClassesInDirectory($path) as $class) {
             $handler = self::getHandlerByCommand($class, $reader);
 
-            if (!class_exists($handler)) {
+            if ($handler !== null && !class_exists($handler)) {
                 continue;
             }
 

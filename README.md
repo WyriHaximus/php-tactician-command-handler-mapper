@@ -58,7 +58,7 @@ class AwesomesauceCommand
 
 # Mapping
 
-The mapper needs two things, a path where it can find commands, and the corrosponding namespace for that path. From there it scans all classes it finds for the `@Handler` annotation ad returns a map of commands and handlers that match.
+The mapper needs a path where it can find commands. From there it scans all classes it finds for the `@Handler` annotation ad returns a map of commands and handlers that match.
 
 ## Mapper::mapInstantiated
 
@@ -69,7 +69,7 @@ use League\Tactician\Setup\QuickStart;
 use WyriHaximus\Tactician\CommandHandler\Mapper;
 
 $commandBus = QuickStart::create(
-    Mapper::mapInstanciated('src' . DS . 'CommandBus', 'App\CommandBus')
+    Mapper::mapInstanciated('src' . DS . 'CommandBus')
 );
 ```
 
@@ -80,7 +80,7 @@ For when you don't want a set instanciated handlers, for exampe useful when usin
 ```php
 use League\Tactician\Setup\QuickStart;
 
-$commandToHandlerMap = Mapper::map('src' . DS . 'CommandBus', 'App\CommandBus');
+$commandToHandlerMap = Mapper::map('src' . DS . 'CommandBus'w);
 ```
 
 # License

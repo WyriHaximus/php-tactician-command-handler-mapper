@@ -55,4 +55,4 @@ install:
 script: make travis
 
 ## Gather coverage and set it to coverage servers
-after_script: make travis-coverage
+after_script: make ci-extended

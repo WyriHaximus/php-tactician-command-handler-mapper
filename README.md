@@ -80,7 +80,7 @@ For when you don't want a set instanciated handlers, for exampe useful when usin
 ```php
 use League\Tactician\Setup\QuickStart;
 
-$commandToHandlerMap = Mapper::map('src' . DS . 'CommandBus'w);
+$commandToHandlerMap = Mapper::map('src' . DS . 'CommandBus');
 ```
 
 # License

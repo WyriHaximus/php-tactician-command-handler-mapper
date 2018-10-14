@@ -15,7 +15,6 @@
     "wyrihaximus/list-classes-in-directory": "^1.0"
   },
   "require-dev": {
-    "api-clients/cs-fixer-config": "^1.0",
     "api-clients/test-utilities": "^5.1"
   },
   "autoload": {

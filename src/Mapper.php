@@ -22,7 +22,7 @@ final class Mapper
         foreach (listClassesInDirectory($path) as $class) {
             $handler = self::getHandlerByCommand($class, $reader);
 
-            if ($handler === null || !class_exists($handler)) {
+            if ($handler === null || !\class_exists($handler)) {
                 continue;
             }
 

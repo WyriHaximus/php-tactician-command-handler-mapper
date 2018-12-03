@@ -19,7 +19,7 @@ final class Handler
      */
     public function __construct(array $handler)
     {
-        $this->handler = current($handler);
+        $this->handler = \current($handler);
     }
 
     /**

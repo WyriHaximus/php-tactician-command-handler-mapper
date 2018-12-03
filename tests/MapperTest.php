@@ -10,22 +10,25 @@ use Test\App\Handlers\AwesomesauceHandler;
 use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 use WyriHaximus\Tactician\CommandHandler\Mapper;
 
+/**
+ * @internal
+ */
 final class MapperTest extends TestCase
 {
-    public function testMapInstantiated()
+    public function testMapInstantiated(): void
     {
-        $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR;
-        $map = iterator_to_array(Mapper::mapInstantiated($path));
+        $path = \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR;
+        $map = \iterator_to_array(Mapper::mapInstantiated($path));
 
-        self::assertSame(1, count($map));
+        self::assertSame(1, \count($map));
         self::assertTrue(isset($map[AwesomesauceCommand::class]));
         self::assertInstanceOf(AwesomesauceHandler::class, $map[AwesomesauceCommand::class]);
     }
 
-    public function testMap()
+    public function testMap(): void
     {
-        $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR;
-        $map = iterator_to_array(Mapper::map($path));
+        $path = \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR;
+        $map = \iterator_to_array(Mapper::map($path));
 
         self::assertSame(
             [
@@ -35,7 +38,7 @@ final class MapperTest extends TestCase
         );
     }
 
-    public function testGetHandlerByCommand()
+    public function testGetHandlerByCommand(): void
     {
         $handler = new Handler([
             'handdler',
@@ -46,7 +49,7 @@ final class MapperTest extends TestCase
         self::assertSame('handdler', $result);
     }
 
-    public function testGetHandlerByCommandStdClass()
+    public function testGetHandlerByCommandStdClass(): void
     {
         $result = Mapper::getHandlerByCommand('stdClass', new AnnotationReader());
         self::assertSame(null, $result);

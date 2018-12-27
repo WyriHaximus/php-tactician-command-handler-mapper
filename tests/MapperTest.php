@@ -17,7 +17,7 @@ final class MapperTest extends TestCase
 {
     public function testMapInstantiated(): void
     {
-        $path = \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR;
+        $path = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . 'test-app' . \DIRECTORY_SEPARATOR;
         $map = \iterator_to_array(Mapper::mapInstantiated($path));
 
         self::assertSame(1, \count($map));
@@ -27,7 +27,7 @@ final class MapperTest extends TestCase
 
     public function testMap(): void
     {
-        $path = \dirname(__DIR__) . DIRECTORY_SEPARATOR . 'test-app' . DIRECTORY_SEPARATOR;
+        $path = \dirname(__DIR__) . \DIRECTORY_SEPARATOR . 'test-app' . \DIRECTORY_SEPARATOR;
         $map = \iterator_to_array(Mapper::map($path));
 
         self::assertSame(

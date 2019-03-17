@@ -5,8 +5,8 @@ namespace WyriHaximus\Tactician\CommandHandler;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
 use ReflectionClass;
-use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 use function WyriHaximus\listClassesInDirectory;
+use WyriHaximus\Tactician\CommandHandler\Annotations\Handler;
 
 final class Mapper
 {
